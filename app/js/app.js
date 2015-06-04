@@ -12,6 +12,12 @@ app.config(function($routeProvider) {
   	controller: 'HomeController'
 
   })
+  
+  $routeProvider.when('/register', {
+  	templateUrl: 'register.html',
+  	controller: 'RegisterController'
+
+  });
     
     
  $routeProvider.otherwise({ redirectTo: '/login' });
@@ -36,5 +42,11 @@ app.controller('LoginController', function($scope, $location) {
 app.controller('HomeController', function($scope, $location) {
         $scope.logout = function() {
         $location.path('/login');
+    }
+});
+
+app.controller('RegisterController', function($scope, $location) {
+        $scope.register = function() {
+        $location.path('/register');
     }
 });
