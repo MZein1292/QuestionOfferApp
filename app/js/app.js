@@ -14,14 +14,27 @@ app.config(function($routeProvider) {
   })
     
     
- $routeProvider.otherwise({ redirectTo: '/home' });
+ $routeProvider.otherwise({ redirectTo: '/login' });
     
 });
 
-app.controller('LoginController', function() {
+app.controller('LoginController', function($scope, $location) {
+    window.scope = $scope;
+    $scope.credentials = { username: "", password: ""};
+    $scope.login = function() {
+        if($scope.credentials.username !== "admin" && $scope.credentials.password !== "admin") {
+            alert("you are not the admin");
+        }
+        else{
+            $location.path('/home');
+        }
+    }
 
+            
 });
 
-app.controller('HomeController', function() {
-
+app.controller('HomeController', function($scope, $location) {
+        $scope.logout = function() {
+        $location.path('/login');
+    }
 });
