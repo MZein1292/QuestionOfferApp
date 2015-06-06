@@ -3,19 +3,25 @@ var app = angular.module("app", ['ngRoute'])
 app.config(function($routeProvider) {
 
   $routeProvider.when('/login', {
-    templateUrl: 'login.html',
+    templateUrl: 'app/partials/login.html',
     controller: 'LoginController'
   });
 
   $routeProvider.when('/home', {
-  	templateUrl: 'home.html',
+  	templateUrl: 'app/partials/home.html',
   	controller: 'HomeController'
 
   })
   
   $routeProvider.when('/register', {
-  	templateUrl: 'register.html',
+  	templateUrl: 'app/partials/register.html',
   	controller: 'RegisterController'
+
+  });
+
+  $routeProvider.when('/forgotpass', {
+    templateUrl: 'app/partials/forgotpass.html',
+    controller: 'forgotpasscontroller'
 
   });
     
@@ -33,11 +39,20 @@ app.controller('LoginController', function($scope, $location) {
         }
         else{
             $location.path('/home');
-        }
-    }
+          }
 
-            
+      }
+      $scope.register = function() {
+        $location.path('/register');
+        }
+      $scope.forgotpass = function() {
+        $location.path('/forgotpass')
+      }
+
+
+        
 });
+
 
 app.controller('HomeController', function($scope, $location) {
         $scope.logout = function() {
@@ -45,8 +60,19 @@ app.controller('HomeController', function($scope, $location) {
     }
 });
 
+
 app.controller('RegisterController', function($scope, $location) {
-        $scope.register = function() {
-        $location.path('/register');
-    }
+        
+    
+});
+
+
+app.controller('forgotpasscontroller', function($scope, $location) {
+
+  $scope.sendCode = function () {
+    alert("We have sent the code to your email");
+    
+  }
+        
+    
 });

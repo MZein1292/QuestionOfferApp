@@ -2,6 +2,52 @@ h1,h2,h3,h4,h5 {
   text-align: center;
 }
 
-button {
-  margin-bottom: 0px !important;
+#loginPageInput label
+{
+	margin-left:780px;
+}
+
+#loginPageInput input 
+{
+	width:20%;
+	margin-left: 770px;
+}
+
+#loginPageInput button	
+{
+	margin-left: 770px;
+}
+.loginForm
+{
+	margin-top: 100px;
+}
+
+.wrap
+{
+	display:inline;
+	vertical-align:top;
+	text-align:center;
+}
+
+#lefty {
+    float: left;
+}
+
+#clear {
+    clear:both;
+}
+
+#navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.dashboard{
+     display: flex;
+    justify-content: space-between;
+}
+
+.dashboard li 
+{ 
+	border-right: 1px solid #000000;
 }
