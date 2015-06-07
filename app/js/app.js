@@ -3,24 +3,24 @@ var app = angular.module("app", ['ngRoute'])
 app.config(function($routeProvider) {
 
   $routeProvider.when('/login', {
-    templateUrl: 'app/partials/login.html',
+    templateUrl: 'app/login/login.html',
     controller: 'LoginController'
   });
 
   $routeProvider.when('/home', {
-  	templateUrl: 'app/partials/home.html',
+  	templateUrl: 'app/home.html',
   	controller: 'HomeController'
 
   })
   
   $routeProvider.when('/register', {
-  	templateUrl: 'app/partials/register.html',
+  	templateUrl: 'app/login/register.html',
   	controller: 'RegisterController'
 
   });
 
   $routeProvider.when('/forgotpass', {
-    templateUrl: 'app/partials/forgotpass.html',
+    templateUrl: 'app/login/forgotpass.html',
     controller: 'forgotpasscontroller'
 
   });

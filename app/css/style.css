@@ -51,3 +51,12 @@ h1,h2,h3,h4,h5 {
 { 
 	border-right: 1px solid #000000;
 }
+
+#borda {
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   background-color: #f0f0f0;
+   padding-bottom: 50px;
+   clear: both;
+   display: block;
+}
