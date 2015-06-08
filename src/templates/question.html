@@ -1,0 +1,67 @@
+<!--<form>
+<h3>Add Your Question Here</h3>
+<div class="form-group has-success has-feedback">
+  <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+</div>
+
+<h4>Please Write down The Answers and select the correct one</h4>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+  </label>
+    <input type="text" class="form-control" placeholder="Anwser1">
+</div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+  </label>
+    <input type="text" class="form-control" placeholder="Anwser2">
+</div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+  </label>
+    <input type="text" class="form-control" placeholder="Anwser3">
+</div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+  </label>
+    <input type="text" class="form-control" placeholder="Anwser4">
+</div>
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+</form>
+-->
+<div ng-controller="MasterCtrl">
+<form class="form-horizontal" role="form" ng-submit="addRow()">
+	<div class="form-group">
+		<label class="col-md-2 control-label">Question</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="question"
+				ng-model="question" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">Response</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="response"
+				ng-model="response" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-2 control-label">Percentage</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="percentage"
+				ng-model="percentage" />
+		</div>
+	</div>
+	<div class="form-group">								
+		<div style="padding-left:110px">
+			<input type="submit" value="Submit" class="btn btn-primary"/>
+		</div>
+	</div>
+</form>
+    </div>
+    
