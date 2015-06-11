@@ -112,6 +112,16 @@ function MasterCtrl($scope, $cookieStore, $location) {
                       'redeemed': 'N/A'},
                     ];
     
+        
+    //if checkbox is checked disable texbox for dates
+    
+    $scope.cbSelected = function() {
+        if($scope.dateCB) {
+            $scope.rows2.expiration = 'N/A';
+        }
+    };
+
+    
     $scope.addRow2 = function(){		
 	$scope.rows2.push({ 'offerText':$scope.offerText, 'tagName': $scope.tagName, 'expiration': $scope.expiration, 'location': $scope.state.currentState, 'views': 'N/A', claimed: 'N/A' , sharedcount: 'N/A' , redeemed: 'N/A' });
 	$scope.offerText='';
@@ -123,6 +133,7 @@ function MasterCtrl($scope, $cookieStore, $location) {
     
         
     };
+    
 
     
     /*

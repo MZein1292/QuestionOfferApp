@@ -50,7 +50,7 @@
     <div class="form-group">
 		<label class="col-md-2 control-label">Expiration Date</label>
 		<div class="col-md-4">
-			<input class="form-control" type="date" ng-model="expiration" /><input type="checkbox"> Never
+			<input type="checkbox" ng-model="myCheckbox" ng-change="cbSelected()"> Set Date<input class="form-control" type="date" ng-model="expiration" ng-readonly="!myCheckbox" />
 		</div>
 	</div>
     <div class="form-group">
