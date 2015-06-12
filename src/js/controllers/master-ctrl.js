@@ -44,6 +44,10 @@ function MasterCtrl($scope, $cookieStore, $location) {
         $location.path('/register');
         }
      
+     $scope.forgotpass = function() {
+         $location.path('/forgotPass');
+     }
+     
      
      $scope.user = {
         currentRegisterar: 'Sponsor'
@@ -79,20 +83,42 @@ function MasterCtrl($scope, $cookieStore, $location) {
     
     */
     
-    $scope.rows = [
-                    { 'question':'Number of attendance tonight',
-                    	'response': "4000",
-                    	'percentage': '70%'},
-                  
-                    ];
     
-    $scope.addRow = function(){		
-	$scope.rows.push({ 'question':$scope.question, 'response': $scope.response, 'percentage':$scope.percentage });
+    $scope.rows = [
+                    {   'tagName': "Attendance",
+                        'question':'Number of attendance tonight',
+                    	'response': "4000",
+                        'percentage': "70%"
+                        }];
+    
+    
+    
+   
+    
+    $scope.addRow = function(){
+        
+        
+     if($scope.myCheckbox1)
+        $scope.response = $scope.response1;
+    else if($scope.myCheckbox2)
+        $scope.response = $scope.response2;
+    else if($scope.myCheckbox3)
+        $scope.response = $scope.response3;
+    else if($scope.mycheckbox4)
+        $scope.response = $scope.response4;
+    else
+        $scope.response = "N/A"
+        
+        
+	$scope.rows.push({ 'question':$scope.question, 'response': $scope.response, 'tagName': $scope.tagName, 'percentage': 'N/A' });
 	$scope.question='';
 	$scope.response='';
-	$scope.percentage='';
+    $scope.tagName='';
         
     };
+    
+    
+  
     
     
        /*
