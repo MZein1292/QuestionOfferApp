@@ -4,23 +4,25 @@
 
  angular
     .module('RDash')
-    .controller('MasterCtrl', ['$scope',  '$cookieStore', '$location', MasterCtrl]);
+    .controller('MasterCtrl', [  '$scope',  '$cookieStore', '$location', '$window', '$interval',  MasterCtrl]);
 
 
 
 
 function MasterCtrl($scope, $cookieStore, $location) {
+    
+
     /**
      * Sidebar Toggle & Cookie Control
      */
     var mobileView = 992;
     
 
-
     $scope.getWidth = function() {
         return window.innerWidth;
     };
     
+   
     
     /*
     
@@ -35,7 +37,7 @@ function MasterCtrl($scope, $cookieStore, $location) {
             alert("you are not the admin");
         }
         else{
-            $location.path('/');
+            $location.path('/adminDashboard');
           }
 
       };
@@ -44,8 +46,16 @@ function MasterCtrl($scope, $cookieStore, $location) {
         $location.path('/register');
         }
      
+      $scope.addQuestion = function() {
+        $location.path('/adminDashboard/question');
+        }
+     
      $scope.forgotpass = function() {
          $location.path('/forgotPass');
+     }
+     
+     $scope.modal = function() {
+         $location.path('/modal');
      }
      
      
@@ -118,6 +128,22 @@ function MasterCtrl($scope, $cookieStore, $location) {
     };
     
     
+    $scope.removeRow = function(tagName){				
+		var index = -1;		
+		var comArr = eval( $scope.rows );
+		for( var i = 0; i < comArr.length; i++ ) {
+			if( comArr[i].name === name ) {
+				index = i;
+				break;
+			}
+		}
+		if( index === -1 ) {
+			alert( "Question Deleted" );
+		}
+		$scope.rows.splice( index, 1 );		
+	};
+    
+    
   
     
     
@@ -154,11 +180,25 @@ function MasterCtrl($scope, $cookieStore, $location) {
 	$scope.tagName='';
 	$scope.expiration='';
     $scope.state.currentState='';
-    
-    
-    
         
     };
+    
+    $scope.removeRow2 = function(tagName){				
+		var index = -1;		
+		var comArr = eval( $scope.rows2 );
+		for( var i = 0; i < comArr.length; i++ ) {
+			if( comArr[i].name === name ) {
+				index = i;
+				break;
+			}
+		}
+		if( index === -1 ) {
+			alert( "Question Deleted" );
+		}
+		$scope.rows2.splice( index, 1 );		
+	};
+    
+
     
 
     
@@ -167,6 +207,8 @@ function MasterCtrl($scope, $cookieStore, $location) {
     STATE SELECTION
     
     */
+    
+   
     
     
     $scope.state = {
@@ -244,7 +286,20 @@ function MasterCtrl($scope, $cookieStore, $location) {
         ]
     
   
-    
+        
+    $scope.visible = false;
+
+    $scope.close = function() {
+            $scope.visible = false;
+    };
+
+    document.addEventListener("keyup", function(e) {
+            if (e.keyCode === 27)
+                    $scope.$apply(function() {
+                            if ($scope.visible === true)
+                                    $scope.close();
+                            });
+            });
 
     
   
@@ -269,6 +324,18 @@ function MasterCtrl($scope, $cookieStore, $location) {
 
     window.onresize = function() {
         $scope.$apply();
+    };
+    
+        $scope.show = function() {
+        ModalService.showModal({
+            templateUrl: 'modal.html',
+            controller: "ModalController"
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                $scope.message = "You said " + result;
+            });
+        });
     };
  
 }

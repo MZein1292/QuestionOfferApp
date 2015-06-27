@@ -1,0 +1,16 @@
+<h2>Please select if you are a team or a sponsor</h2>
+<div data-ng-controller="MasterCtrl">
+    You are a: {{ user.currentRegisterar}}
+    <div>
+        Choose:
+        <select data-ng-model="user.currentRegisterar"
+                data-ng-options="act for act in activities">                
+        </select>
+    </div>
+    <button type="submit" ng-click="continue()" class="btn btn-primary">continue</button>
+</div>
+
+
+
+
+

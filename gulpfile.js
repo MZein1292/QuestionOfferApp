@@ -1,3 +1,9 @@
+vendor_files: {
+    js: [
+        'vendor/angular/angular.js'
+        ]
+}
+
 var gulp = require('gulp'),
     usemin = require('gulp-usemin'),
     wrap = require('gulp-wrap'),

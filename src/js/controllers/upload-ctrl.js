@@ -20,3 +20,6 @@ function UploadController($scope, $cookieStore, $location, $reader) {
     }); 
 };
 
+
+
+

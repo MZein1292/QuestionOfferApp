@@ -1,0 +1,35 @@
+<div>
+<ul>
+    <li>
+        <a ng-click="promptSomething()">Modal</a>
+    </li>
+</ul>
+    
+    
+<form
+            ng-switch-when="prompt"
+            ng-controller="PromptModalController"
+            ng-submit="submit()"
+            class="modal">
+ 
+            <p>
+                {{ message }}
+            </p>
+ 
+            <p ng-if="errorMessage">
+                <strong>Sorry:</strong> {{ errorMessage }}
+            </p>
+ 
+            <p>
+                <input type="text" ng-model="form.input" />
+            </p>
+ 
+            <p>
+                <a ng-click="submit()">Submit</a>
+                &mdash;
+                <a ng-click="cancel()">Cancel</a>
+            </p>
+ </form>
+        <!-- END: Prompt Modal. -->    
+
+</div>
