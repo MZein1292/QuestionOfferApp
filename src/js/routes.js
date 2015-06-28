@@ -70,9 +70,6 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 controller: 'MasterCtrl'
             })
         
-  
-        
-        
     }]);
                                 
 

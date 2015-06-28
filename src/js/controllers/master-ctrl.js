@@ -1,15 +1,14 @@
 /**
  * Master Controller
  */
-
 var app = angular.module('RDash');
 
-app.controller('MasterCtrl', [  '$scope',  '$cookieStore', '$location', '$window', '$interval',  MasterCtrl]);
+app.controller('MasterCtrl', [  '$scope', '$http','$cookieStore', '$location', '$window', '$interval', '$modal', '$log',  MasterCtrl]);
 
 
 
 
-function MasterCtrl($scope, $cookieStore, $location) {
+function MasterCtrl($scope, $http, $cookieStore, $location, $window, $modal, $log) {
     
     /**
      * Sidebar Toggle & Cookie Control
@@ -29,14 +28,32 @@ function MasterCtrl($scope, $cookieStore, $location) {
     
     */
     
- 
     $scope.login = function() {
-        if($scope.credentials.username !== "admin" && $scope.credentials.password !== "admin") {
-            alert("you are not the admin");
-        }
-        else{
-            $location.path('/adminDashboard');
-          }
+        
+        var url = "http://speaqbackend.duckdns.org:5000/mobile/loginEmail";
+        
+        var postdata = { 
+            email: $scope.credentials.username,
+            password: $scope.credentials.password
+        };
+        
+        $http.post(url, postdata, {headers: { 'Content-Type': 'application/json'}}).success(function(data, status) {
+          console.log(data);
+        if(data.res) {
+            $window.sessionStorage.token = data.token;
+            $location.path('adminDashboard');
+        } else {
+            //alert for failed userlogin
+            console.log("error");
+         }
+        });
+        
+       // if($scope.credentials.username !== "admin" && $scope.credentials.password !== "admin") {
+        //    alert("you are not the admin");
+    //    }
+    //    else{
+      //      $location.path('/adminDashboard');
+    //      }
 
       };
     
@@ -131,7 +148,6 @@ function MasterCtrl($scope, $cookieStore, $location) {
     $scope.tagName='';
         
     };
-    
     
     $scope.removeRow = function(tagName){				
 		var index = -1;		
@@ -286,7 +302,8 @@ function MasterCtrl($scope, $cookieStore, $location) {
     
     
     
-    // set the rate and max variables
+  //STAR RATING GOR FEEDBACK PAGE
+    
   $scope.rate = 3;
   $scope.max = 5
     
@@ -343,7 +360,38 @@ function MasterCtrl($scope, $cookieStore, $location) {
         $scope.$apply();
     };
     
+    /* 
+    
+    MODAL FOR POP UP
+    
+    */
+    
+    $scope.items = ['item1', 'item2', 'item3'];
 
+  $scope.open = function (size) {
+    var modalInstance;
+    var modalScope = $scope.$new();
+    modalScope.ok = function () {
+            modalInstance.close(modalScope.selected);
+    };
+    modalScope.cancel = function () {
+            modalInstance.dismiss('cancel');
+    };      
+    
+    modalInstance = $modal.open({
+      template: '<my-modal></my-modal>',
+      size: size,
+      scope: modalScope
+      }
+    );
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+    
     
     /*
     
@@ -358,8 +406,7 @@ function MasterCtrl($scope, $cookieStore, $location) {
     $scope.text04 = 'San Fransisco, CA';
     $scope.text05 = 'Detroit, Michigan';
     $scope.text06 = 'info@support.com';
-    $scope.text06 = 'info@support.com';
-    $scope.text06 = '123-4567-890(Rep)<br><br>555-4567-890(Company)';
+    $scope.text07 = '123-4567-890(Rep)<br><br>555-4567-890(Company)';
     $scope.editmode = false;
     $scope.toggleEditMode = function(){
         $scope.myVar = !$scope.myVar;
@@ -394,10 +441,17 @@ app.directive("contenteditable", function() {
   };
 });
 
-
-
-
-
+app.directive('myModal', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope) {
+          $scope.selected = {
+            item: $scope.items[0] 
+          };
+        }
+    };
+});
 
 
    
