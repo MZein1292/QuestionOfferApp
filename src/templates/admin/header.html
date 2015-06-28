@@ -1,4 +1,11 @@
+<style>
 
+    .sidebar-footer 
+    {
+        margin-bottom: 200px;
+    }
+
+</style>
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
     <!-- Sidebar -->
@@ -17,18 +24,15 @@
         <li class="sidebar-list">
           <a ui-sref="adminDashboard.tables">Offer <span class="glyphicon glyphicon-plus"></span></a>
         </li>
-        <li class="sidebar-list">
-          <a href="#/tables">Game <span class="glyphicon glyphicon-eye-open"></span></a>
-        </li>
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="#" target="_blank">
-            About
+          <a ui-sref="adminDashboard.feedback">
+            Feedback
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="#">
+          <a ui-sref="adminDashboard.support">
             Support
           </a>
         </div>
@@ -53,23 +57,13 @@
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#">
+                    <a ui-sref="adminDashboard.profile">
                       Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
                     </a>
                   </li>
                   <li class="divider"></li>
                   <li class="link">
-                    <a href="#">
+                    <a href="#/login">
                       Logout
                     </a>
                   </li>

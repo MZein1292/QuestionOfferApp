@@ -14,6 +14,8 @@
         <th>claimed</th>
         <th>Shared Count</th>
         <th>Redeems</th>
+        <td></td>
+        <td></td>
 	</tr>
 	<tr ng-repeat="row2 in rows2">
 		<td>{{row2.tagName}}</td>
@@ -25,8 +27,10 @@
         <td>{{row2.sharedcount}}</td>
         <td>{{row2.redeemed}}</td>
         <td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow2(row2.tagName)"/></td>
+        <td><button  popover="{{row2.offerText}} ! you got {{row2.tagName}}" popover-title="Anwser is correct!" class="btn btn-default">Preview</button></td>
 	</tr>
 </table> 
+    
     
     
     

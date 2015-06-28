@@ -1,43 +1,174 @@
+<style>
+    #phoneNum {
+        width: 80%;
+    }
+    .fieldBlock
+    {
+        display: block;
+        width: 200px;
+        float: left;
+        padding: 10px;
+    }
+
+    .title
+        {
+            font-weight: bold;
+        }
+
+    input
+        {
+        border: 1px solid ;
+        font-size: 1.1em;
+        }
+    h2 {
+        text-align: center;
+        }
+        
+
+</style>
+
 <div class="col-md-6 col-md-offset-3">
-    <h2>Register</h2>
+    <h2>Registeration Page</h2>
     <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
     <form name="form" ng-submit="vm.register()" role="form">
-        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="vm.user.username" required />
-            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="Text1" class="form-control" ng-model="vm.user.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is Required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="vm.user.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
-            <label for="username">Company name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="vm.user.firstName" required />
-            <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>
+        <hr>
+        <hr>
+        <div class="fieldBlock">
+            <div class="title"></div>
+                <label for="username"> Company Rep</label>
+            <input type="text" name="phone Number" id="phoneNum" class="form-control" ng-model="vm.user.phoneNum" required />
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="Text1" class="form-control" ng-model="vm.user.email" required />
-            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is Required</span>
+        <div class="fieldBlock">
+           <label for="username">Company Phone Number</label>
+            <input type="text" name="phone Number" id="phoneNum" class="form-control" ng-model="vm.user.phoneNum" required />
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.phoneNum.$dirty && form.phoneNum.$error.required }">
-            <label for="username">Phone Number</label>
-            <input type="text" name="phone Number" id="Text1" class="form-control" ng-model="vm.user.phoneNum" required />
-            <span ng-show="form.phoneNum.$dirty && form.phoneNum.$error.required" class="help-block">Phone Number is Required</span>
+        <fieldset>
+                <!-- address-line1 input-->
+                <div class="control-group">
+                    <label class="control-label"> Company Address Line 1</label>
+                    <div class="controls">
+                        <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
+                       class="form-control">
+                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                    </div>
+                </div>
+                <!-- address-line2 input-->
+                <div class="control-group">
+                    <label class="control-label"> Company Address Line 2</label>
+                    <div class="controls">
+                        <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
+                        class="form-control">
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                    </div>
+                </div>
+                <label for="state">State Location</label>
+                <select  data-ng-model="state.currentState"
+                data-ng-options="name for name in states">                
+                </select>
+                <!-- city input-->
+                <div class="control-group">
+                    <label class="control-label">City / Town</label>
+                    <div class="controls">
+                        <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <!-- region input-->
+               <label for="state">State Location</label>
+                <select  data-ng-model="state.currentState"
+                data-ng-options="name for name in states">                
+                </select>
+                <!-- postal-code input-->
+                <div class="control-group">
+                    <label class="control-label">Zip / Postal Code</label>
+                    <div class="controls">
+                        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+                        class="form-control">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+            </fieldset>
+        <hr>
+        <hr>
+         <div class="fieldBlock">
+            <div class="title"></div>
+                <label for="username">Location Rep</label>
+            <input type="text" name="phone Number" id="phoneNum" class="form-control" ng-model="vm.user.phoneNum" required />
         </div>
+        <div class="fieldBlock">
+           <label for="username">Location Phone Number</label>
+            <input type="text" name="phone Number" id="phoneNum" class="form-control" ng-model="vm.user.phoneNum" required />
+        </div>
+        <fieldset>
+                <!-- address-line1 input-->
+                <div class="control-group">
+                    <label class="control-label">Location Address Line 1</label>
+                    <div class="controls">
+                        <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
+                       class="form-control">
+                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                    </div>
+                </div>
+                <!-- address-line2 input-->
+                <div class="control-group">
+                    <label class="control-label">Location Address Line 2</label>
+                    <div class="controls">
+                        <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
+                        class="form-control">
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                    </div>
+                </div>
+                <label for="state">State Location</label>
+                <select  data-ng-model="state.currentState"
+                data-ng-options="name for name in states">                
+                </select>
+                <!-- city input-->
+                <div class="control-group">
+                    <label class="control-label">City / Town</label>
+                    <div class="controls">
+                        <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <!-- region input-->
+               <label for="state">State Location</label>
+                <select  data-ng-model="state.currentState"
+                data-ng-options="name for name in states">                
+                </select>
+                <!-- postal-code input-->
+                <div class="control-group">
+                    <label class="control-label">Zip / Postal Code</label>
+                    <div class="controls">
+                        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+                        class="form-control">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+            </fieldset>
+        <hr>
+        <hr>
         <div ng-controller="UploadController">
-        <h1>Please Upload Your company logo</h1>
+        <h4>Please Upload Your company logo</h1>
         <div class="form-group" ng-class="{ 'has-error': form.phoneNum.$dirty && form.phoneNum.$error.required }">
             <input type="file" id="Text1" class="form-control" ng-file-select="onFileSelect($files)" >
         </div>
-        <b>Preview:</b><br />
-            <i ng-hide="imageSrc">No image choosed</i>
-            <img ng-src="{{imageSrc}}" /><br/>
-            <b>Progress:</b>
-            <progress value="{{progress}}"></progress>
+        <h4>Please Upload Your Location Background</h1>
+        <div class="form-group" ng-class="{ 'has-error': form.phoneNum.$dirty && form.phoneNum.$error.required }">
+            <input type="file" id="Text1" class="form-control" ng-file-select="onFileSelect($files)" >
         </div>
+        
+        
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
             <a href="#/login" class="btn btn-link">Cancel</a>

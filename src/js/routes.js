@@ -18,12 +18,6 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             controller: 'MasterCtrl'
             
         })
-        .state('register', {
-            url: "/register",
-            templateUrl: "templates/login/register.html",
-            controller: 'MasterCtrl'
-            
-        })
         .state('forgotPass', {
             url: "/forgotPass",
             templateUrl: "templates/login/forgotPass.html",
@@ -60,16 +54,23 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/admin/adminDashboard.tables.html',
                 controller: 'MasterCtrl'
             })
-        .state('adminDashboard.question', {
-                url: '/:question',
-                templateUrl: 'templates/admin/adminDashboard.question.html',
+        .state('adminDashboard.profile', {
+                url: '/:profile',
+                templateUrl: 'templates/admin/adminDashboard.profile.html',
                 controller: 'MasterCtrl'
             })
-        .state('adminDashboard.addOffer', {
-                url: '/:addOffer',
-                templateUrl: 'templates/admin/adminDashboard.addOffer.html',
+        .state('adminDashboard.support', {
+                url: '/:support',
+                templateUrl: 'templates/admin/adminDashboard.support.html',
                 controller: 'MasterCtrl'
-            });
+            })
+        .state('adminDashboard.feedback', {
+                url: '/:feedback',
+                templateUrl: 'templates/admin/adminDashboard.feedback.html',
+                controller: 'MasterCtrl'
+            })
+        
+  
         
         
     }]);

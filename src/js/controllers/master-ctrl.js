@@ -2,16 +2,15 @@
  * Master Controller
  */
 
- angular
-    .module('RDash')
-    .controller('MasterCtrl', [  '$scope',  '$cookieStore', '$location', '$window', '$interval',  MasterCtrl]);
+var app = angular.module('RDash');
+
+app.controller('MasterCtrl', [  '$scope',  '$cookieStore', '$location', '$window', '$interval',  MasterCtrl]);
 
 
 
 
 function MasterCtrl($scope, $cookieStore, $location) {
     
-
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -23,7 +22,6 @@ function MasterCtrl($scope, $cookieStore, $location) {
     };
     
    
-    
     /*
     
     
@@ -43,7 +41,7 @@ function MasterCtrl($scope, $cookieStore, $location) {
       };
     
      $scope.register = function() {
-        $location.path('/register');
+        $location.path('/sponsorRegister');
         }
      
       $scope.addQuestion = function() {
@@ -59,7 +57,11 @@ function MasterCtrl($scope, $cookieStore, $location) {
      }
      
      
-     $scope.user = {
+    //this commented code is for the sponsor team selection
+    //WE DECIDED TO MAKE ONE REGISTRATION PAGE, THIS CODE IS KEPT FOR FUTURE NEEDS
+     ///////////////////////////////////////////////////////////////////////////////////////
+     
+    /* $scope.user = {
         currentRegisterar: 'Sponsor'
     };
  
@@ -83,8 +85,11 @@ function MasterCtrl($scope, $cookieStore, $location) {
             $location.path("/teamRegister");
     }
 
-
+   */
   
+     
+     
+     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
     
     /*
@@ -165,9 +170,9 @@ function MasterCtrl($scope, $cookieStore, $location) {
                     ];
     
         
-    //if checkbox is checked disable texbox for dates
+   
     
-    $scope.cbSelected = function() {
+    $scope.cbSelected = function() {            //if checkbox is checked disable texbox for dates
         if($scope.dateCB) {
             $scope.rows2.expiration = 'N/A';
         }
@@ -278,6 +283,18 @@ function MasterCtrl($scope, $cookieStore, $location) {
     "WY"
 ]
     
+    
+    
+    
+    // set the rate and max variables
+  $scope.rate = 3;
+  $scope.max = 5
+    
+    
+    
+    
+    
+    
     $scope.congrats =
         [
         "Whoop Whoop, You Got It!",
@@ -326,19 +343,60 @@ function MasterCtrl($scope, $cookieStore, $location) {
         $scope.$apply();
     };
     
-        $scope.show = function() {
-        ModalService.showModal({
-            templateUrl: 'modal.html',
-            controller: "ModalController"
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                $scope.message = "You said " + result;
-            });
-        });
-    };
+
+    
+    /*
+    
+    
+    BELOW CODE IS FOR EDITING PROFILE PAGE
+    
+    */
+    
+    
+    $scope.text02 = 'Pradeep';
+    $scope.text03 = 'Dominos Pizza';
+    $scope.text04 = 'San Fransisco, CA';
+    $scope.text05 = 'Detroit, Michigan';
+    $scope.text06 = 'info@support.com';
+    $scope.text06 = 'info@support.com';
+    $scope.text06 = '123-4567-890(Rep)<br><br>555-4567-890(Company)';
+    $scope.editmode = false;
+    $scope.toggleEditMode = function(){
+        $scope.myVar = !$scope.myVar;
+        $scope.editmode = $scope.editmode === false ? true: false;
+  }
+    
+   
+  
+    
  
 }
+
+
+//DIRECTIVE FOR EDITING PROFILE
+app.directive("contenteditable", function() {
+  return {
+    require: "ngModel",
+    link: function(scope, element, attrs, ngModel) {
+
+      function read() {
+        ngModel.$setViewValue(element.html());
+      }
+
+      ngModel.$render = function() {
+        element.html(ngModel.$viewValue || "");
+      };
+
+      element.bind("blur keyup change", function() {
+        scope.$apply(read);
+      });
+    }
+  };
+});
+
+
+
+
 
 
 
