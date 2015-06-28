@@ -3,12 +3,12 @@
  */
 var app = angular.module('RDash');
 
-app.controller('MasterCtrl', [  '$scope', '$http','$cookieStore', '$location', '$window', '$interval', '$modal', '$log',  MasterCtrl]);
+app.controller('MasterCtrl', [  '$scope', '$http', '$cookieStore', '$location', '$window', '$interval', MasterCtrl]);
 
 
 
 
-function MasterCtrl($scope, $http, $cookieStore, $location, $window, $modal, $log) {
+function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     
     /**
      * Sidebar Toggle & Cookie Control
@@ -365,33 +365,7 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window, $modal, $lo
     MODAL FOR POP UP
     
     */
-    
-    $scope.items = ['item1', 'item2', 'item3'];
 
-  $scope.open = function (size) {
-    var modalInstance;
-    var modalScope = $scope.$new();
-    modalScope.ok = function () {
-            modalInstance.close(modalScope.selected);
-    };
-    modalScope.cancel = function () {
-            modalInstance.dismiss('cancel');
-    };      
-    
-    modalInstance = $modal.open({
-      template: '<my-modal></my-modal>',
-      size: size,
-      scope: modalScope
-      }
-    );
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
-    
     
     /*
     
@@ -439,18 +413,6 @@ app.directive("contenteditable", function() {
       });
     }
   };
-});
-
-app.directive('myModal', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'myModalContent.html',
-        controller: function ($scope) {
-          $scope.selected = {
-            item: $scope.items[0] 
-          };
-        }
-    };
 });
 
 
