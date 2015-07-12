@@ -3,12 +3,14 @@
  */
 var app = angular.module('RDash');
 
-app.controller('MasterCtrl', [  '$scope', '$http', '$cookieStore', '$location', '$window', '$interval', MasterCtrl]);
+app.controller('MasterCtrl', [  '$scope', '$http', '$cookieStore', '$location', '$log' , '$modal' , MasterCtrl]);
+app.controller('ModalInstanceCtrl1', [ '$scope' , '$modalInstance' , 'rows', 'myCheckbox1', 'myCheckbox2', 'myCheckbox3', 'myCheckbox4', ModalInstanceCtrl1]);
+app.controller('ModalInstanceCtrl2', [ '$scope' , '$modalInstance' , 'rows2', 'states', 'congrats', ModalInstanceCtrl2]);
 
 
 
 
-function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
+function MasterCtrl($scope, $http, $cookieStore, $location, $log, $modal) {
     
     /**
      * Sidebar Toggle & Cookie Control
@@ -68,10 +70,7 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
      $scope.forgotpass = function() {
          $location.path('/forgotPass');
      }
-     
-     $scope.modal = function() {
-         $location.path('/modal');
-     }
+
      
      
     //this commented code is for the sponsor team selection
@@ -113,7 +112,6 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     
     this is where adding questions start
     
-    */
     
     
     $scope.rows = [
@@ -166,13 +164,13 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     
     
   
-    
+    */
     
        /*
     
     this is where adding offers start
     
-    */
+    
     
     $scope.rows2 = [
                     { 'offerText':'Whoop Whoop',
@@ -195,7 +193,7 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     };
 
     
-    $scope.addRow2 = function(){		
+  $scope.addRow2 = function(){		
 	$scope.rows2.push({ 'offerText':$scope.offerText, 'tagName': $scope.tagName, 'expiration': $scope.expiration, 'location': $scope.state.currentState, 'views': 'N/A', claimed: 'N/A' , sharedcount: 'N/A' , redeemed: 'N/A' });
 	$scope.offerText='';
 	$scope.tagName='';
@@ -220,7 +218,7 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
 	};
     
 
-    
+    */
 
     
     /*
@@ -311,14 +309,7 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     
     
     
-    
-    $scope.congrats =
-        [
-        "Whoop Whoop, You Got It!",
-        "Superb! You Won ! ",
-        "You won an offer from us!"
-        ]
-    
+  
   
         
     $scope.visible = false;
@@ -362,11 +353,149 @@ function MasterCtrl($scope, $http, $cookieStore, $location, $window) {
     
     /* 
     
-    MODAL FOR POP UP
+    MODAL FOR ADDING QUESTIONS
     
     */
 
+    $scope.rows = [
+                    {   'tagName': "Attendance",
+                        'question':'Number of attendance tonight',
+                        'response': "4000",
+                        'percentage': "70%"
+                        }];
+
+
+    $scope.removeRow = function(tagName){       
+    var index = -1;   
+    var comArr = eval( $scope.rows );
+    for( var i = 0; i < comArr.length; i++ ) {
+      if( comArr[i].name === name ) {
+        index = i;
+        break;
+      }
+    }
+    if( index === -1 ) {
+      alert( "Question Deleted" );
+    }
+    $scope.rows.splice( index, 1 );   
+  };
     
+
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl1',
+      size: size,
+      resolve: {
+        rows: function () {
+          return $scope.rows;
+        },
+        myCheckbox1: function() {
+          return $scope.myCheckbox1;
+        },
+        myCheckbox2: function() {
+          return $scope.myCheckbox2;
+        },
+        myCheckbox3: function() {
+          return $scope.myCheckbox3;
+        },
+        myCheckbox4: function() {
+          return $scope.myCheckbox4;
+        }
+
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+
+
+
+/* 
+    
+    MODAL FOR ADDING OFFERS
+    
+    */
+
+
+
+    $scope.congrats =
+        [
+        "Whoop Whoop, You Got It!",
+        "Superb! You Won ! ",
+        "You won an offer from us!"
+        ]
+    
+
+    
+
+    $scope.rows2 = [
+                    { 'offerText':'Whoop Whoop',
+                      'tagName': '50% off the large pizza ',
+                      'expiration': '2016-06-05',
+                      'location': 'MI',
+                      'views': '340',
+                      'claimed': '120',
+                      'sharedcount': '5',
+                      'redeemed': 'N/A'},
+                    ];
+
+
+
+
+    $scope.animationsEnabled = true;
+
+    $scope.open2 = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent2.html',
+      controller: 'ModalInstanceCtrl2',
+      size: size,
+      resolve: {
+        rows2: function () {
+          return $scope.rows2;
+        },
+        states: function () {
+          return $scope.states;
+        },
+        congrats: function() {
+          return $scope.congrats;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+
+
+
+
+
+
     /*
     
     
@@ -416,4 +545,70 @@ app.directive("contenteditable", function() {
 });
 
 
-   
+
+function  ModalInstanceCtrl1($scope, $modalInstance, rows, myCheckbox1, myCheckbox2, myCheckbox3, myCheckbox4) {
+
+ 
+
+   $scope.rows = rows;
+   $scope.myCheckbox1 = myCheckbox1;
+   $scope.myCheckbox2 = myCheckbox2;
+   $scope.myCheckbox3 = myCheckbox3;
+   $scope.myCheckbox4 = myCheckbox4;
+
+  
+   $scope.ok = function () {
+
+    if($scope.myCheckbox1)
+        $scope.response = $scope.response1;
+    else if($scope.myCheckbox2)
+        $scope.response = $scope.response2;
+    else if($scope.myCheckbox3)
+        $scope.response = $scope.response3;
+    else 
+        $scope.response = $scope.response4;
+ 
+
+
+    $scope.rows.push({ 'question':$scope.question, 'response': $scope.response, 'tagName': $scope.tagName, 'percentage': 'N/A' });
+    $scope.question='';
+    $scope.response='';
+    $scope.tagName= '';
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
+
+
+
+function  ModalInstanceCtrl2($scope, $modalInstance, rows2, states, congrats) {
+
+ 
+
+   $scope.rows2 = rows2;
+   $scope.states = states;
+   $scope.congrats = congrats;
+
+
+  
+   $scope.ok = function () {
+
+  $scope.addRow2 = function(){    
+    $scope.rows2.push({ 'offerText':$scope.offerText, 'tagName': $scope.tagName, 'expiration': $scope.expiration, 'location': $scope.state.currentState, 'views': 'N/A', claimed: 'N/A' , sharedcount: 'N/A' , redeemed: 'N/A' });
+    $scope.offerText='';
+    $scope.tagName='';
+    $scope.expiration='';
+    $scope.state.currentState='';
+        
+    };
+
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
