@@ -1,0 +1,91 @@
+<div ng-controller="gameCtrl">
+<h1>Game</h1>
+    
+    
+<button type="submit" ng-click="open3()" class="btn btn-primary">
+  <i class="glyphicon glyphicon-plus"></i>Publish New</button></a>
+
+    
+<table class="table">
+	<tr>
+        <th>Offer Tag
+        </th>
+		<th>Question tag
+		</th>
+		<th>Start
+        </th>
+        <th>Expire
+        </th>
+	</tr>
+	<tr ng-repeat="row3 in rows3">
+		<td>{{row3.offerTag}}
+        </td>
+        <td>{{row3.questionTag}}
+		</td>
+		<td>{{row3.start}}
+		</td>
+        <td>{{row3.expire}}
+        </td>
+        <td><input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(row.tagName)"/></td>
+	</tr>
+</table> 
+
+
+    <script type="text/ng-template" id="myModalContent3.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Publish New!</h3>
+        </div>
+    <div class="modal-body">
+    <form class="form-horizontal" role="form" ng-submit="addRow3()">
+	<div class="form-group">
+		  <label class="col-md-2 control-label">Offer Tag </label>
+		  <div class="col-md-4">
+              <select  data-ng-model="offerTag"
+                      data-ng-options="name for name in offerTagMulti">                
+              </select>
+		  </div>
+        </div>
+     <div class="form-group">
+		  <label class="col-md-2 control-label">Question Tag </label>
+		  <div class="col-md-4">
+              <select  data-ng-model="questionTag"
+                      data-ng-options="name for name in questionTagMulti">                
+              </select>
+		  </div>
+        </div>
+    <div class="form-group">
+		  <label class="col-md-2 control-label">Start Date</label>
+		  <div class="col-md-4">
+              <input type="checkbox" ng-model="myCheckbox1"> Set Date<input class="form-control" type="date" ng-model="start" ng-readonly="!myCheckbox1" />
+		  </div>
+	   </div>
+    <div class="form-group">
+		  <label class="col-md-2 control-label">Expiration Date</label>
+		  <div class="col-md-4">
+              <input type="checkbox" ng-model="myCheckbox2"> Set Date<input class="form-control" type="date" ng-model="expire" ng-readonly="!myCheckbox2" />
+		  </div>
+	   </div>          
+    
+	<!--<div class="form-group">								
+		<div style="padding-left:110px">
+			<input type="submit" value="Submit" class="btn btn-primary"/>
+		</div>
+	</div>-->
+        
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+</form>
+        </div>
+    </script>
+
+
+
+    
+
+</div>
+
+
+
+

@@ -44,14 +44,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             templateUrl: "templates/admin/header.html",
             controller: 'MasterCtrl'
         })
-        .state('adminDashboard.dashboard', {
-                url: '/:dashboard',
-                templateUrl: 'templates/admin/adminDashboard.dashboard.html',
+        .state('adminDashboard.question', {
+                url: '/:question',
+                templateUrl: 'templates/admin/adminDashboard.question.html',
                 controller: 'MasterCtrl'
             })
-        .state('adminDashboard.tables', {
-                url: '/:tables',
-                templateUrl: 'templates/admin/adminDashboard.tables.html',
+        .state('adminDashboard.offers', {
+                url: '/:offers',
+                templateUrl: 'templates/admin/adminDashboard.offer.html',
                 controller: 'MasterCtrl'
             })
         .state('adminDashboard.profile', {
@@ -67,6 +67,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
         .state('adminDashboard.feedback', {
                 url: '/:feedback',
                 templateUrl: 'templates/admin/adminDashboard.feedback.html',
+                controller: 'MasterCtrl'
+            })
+        .state('adminDashboard.game', {
+                url: '/:game',
+                templateUrl: 'templates/admin/adminDashboard.game.html',
                 controller: 'MasterCtrl'
             })
         
