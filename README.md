@@ -12,3 +12,7 @@
 4. Run the gulp build task: `gulp build`.
 5. Run the gulp default task: `gulp`. This will build any changes made automatically, and also run a live reload server on [http://localhost:8888](http://localhost:8888).
 
+#Note
+
+Please make sure to install the angular and bootstrap components, and include them in your src under /components directory
+
