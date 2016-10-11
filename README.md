@@ -6,7 +6,7 @@
 * [Gulp](http://gulpjs.com)
 
 ### Installation
-1. Clone the repository: `git clone https://github.com/rdash/rdash-angular.git`
+1. Clone the repository: `git clone https://github.com/question-offer-app.git`
 2. Install the NodeJS dependencies: `sudo npm install`.
 3. Install the Bower dependencies: `bower install`.
 4. Run the gulp build task: `gulp build`.
@@ -14,5 +14,4 @@
 
 #Note
 
-Please make sure to install the angular and bootstrap components, and include them in your src under /components directory
-
+Please add bootstrap and angular components
